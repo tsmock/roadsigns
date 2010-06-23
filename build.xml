@@ -27,12 +27,12 @@
 **
 **
 -->
-<project name="myPluginName" default="dist" basedir=".">
+<project name="RoadSigns" default="dist" basedir=".">
 
 	<!-- enter the SVN commit message -->
 	<property name="commit.message" value="Commit message" />
 	<!-- enter the *lowest* JOSM version this plugin is currently compatible with -->
-	<property name="plugin.main.version" value="" />
+	<property name="plugin.main.version" value="3338" />
 
 
 	<!--
@@ -77,11 +77,11 @@
     -->
 	<target name="dist" depends="compile,revision">
 		<echo message="creating ${ant.project.name}.jar ... "/>
-		<copy todir="${plugin.build.dir}/resources">
-			<fileset dir="resources"/>
-		</copy>
 		<copy todir="${plugin.build.dir}/images">
 			<fileset dir="images"/>
+		</copy>
+		<copy todir="${plugin.build.dir}/data">
+			<fileset dir="data"/>
 		</copy>
 		<copy todir="${plugin.build.dir}">
 			<fileset dir=".">
@@ -99,12 +99,16 @@
         ************************************************
     -->
 			<manifest>
-				<attribute name="Author" value="..."/>
-				<attribute name="Plugin-Class" value="..."/>
+				<attribute name="Author" value="Sebastian Klein"/>
+				<attribute name="Plugin-Class" value="org.openstreetmap.josm.plugins.roadsigns.RoadSignsPlugin"/>
 				<attribute name="Plugin-Date" value="${version.entry.commit.date}"/>
-				<attribute name="Plugin-Description" value="..."/>
-				<attribute name="Plugin-Icon" value="..."/>
-				<attribute name="Plugin-Link" value="..."/>
+				<attribute name="Plugin-Description" 
+				    value="Selection of road signs from a list of presets. With simple clicks you can create combinations 
+				            of signs and generate tagging suggestions. The dialog can be opened by clicking a small icon 
+				            in the upper right corner of the properties window.
+				            Available country presets: Germany (hopefully more to come)."/>
+				<attribute name="Plugin-Icon" value="images/pref/roadsigns.png"/>
+				<attribute name="Plugin-Link" value="http://wiki.openstreetmap.org/wiki/JOSM/Plugins/RoadSigns"/>
 				<attribute name="Plugin-Mainversion" value="${plugin.main.version}"/>
 				<attribute name="Plugin-Version" value="${version.entry.commit.revision}"/>
 			</manifest>
